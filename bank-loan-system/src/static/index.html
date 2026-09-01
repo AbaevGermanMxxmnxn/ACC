@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LEX — Loan Processing OS</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="desktop">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark"><span></span><i></i></div>
+        <div>
+          <strong>LEX</strong>
+          <small>Loan Processing OS</small>
+        </div>
+      </div>
+
+      <div class="system-date">MONDAY, JUNE 8 2015<br><span>10:42</span></div>
+
+      <div class="search">
+        <span>⌕</span>
+        <input id="searchInput" placeholder="SEARCH APPLICATIONS" autocomplete="off">
+        <div class="search-line"></div>
+      </div>
+
+      <div class="window-controls">
+        <button>—</button><button>□</button><button class="close">×</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="sidebar">
+        <button class="side-item active" data-view="dashboard"><b>⌂</b><span>HOME</span></button>
+        <button class="side-item" data-view="applications"><b>▦</b><span>APPLICATIONS</span></button>
+        <button class="side-item" data-view="scoring"><b>◈</b><span>SCORING</span></button>
+        <button class="side-item" data-view="verification"><b>◇</b><span>VERIFICATION</span></button>
+        <button class="side-item" data-view="contracts"><b>▤</b><span>CONTRACTS</span></button>
+        <div class="side-spacer"></div>
+        <button class="side-item" data-view="settings"><b>⚙</b><span>SETTINGS</span></button>
+      </aside>
+
+      <section class="content">
+        <div class="view active" id="dashboard">
+          <div class="hero">
+            <div>
+              <div class="eyebrow">BANK / CREDIT OPERATIONS</div>
+              <h1>APPLICATION<br>CONTROL CENTER</h1>
+              <p>Real-time overview of the loan application pipeline.</p>
+            </div>
+            <div class="hero-status">
+              <span class="pulse"></span> SYSTEM ONLINE
+              <strong id="clock">10:42:16</strong>
+            </div>
+          </div>
+
+          <div class="tile-grid">
+            <article class="tile orange" data-view="applications">
+              <span class="tile-code">01</span>
+              <span class="tile-icon">▦</span>
+              <div class="tile-title">APPLICATIONS</div>
+              <div class="tile-value" id="totalCount">—</div>
+              <div class="tile-caption">TOTAL REQUESTS</div>
+              <span class="corner"></span>
+            </article>
+
+            <article class="tile pale" data-view="verification">
+              <span class="tile-code">02</span>
+              <span class="tile-icon">◇</span>
+              <div class="tile-title">VERIFICATION</div>
+              <div class="tile-value">06</div>
+              <div class="tile-caption">IN REVIEW</div>
+              <span class="corner"></span>
+            </article>
+
+            <article class="tile orange" data-view="scoring">
+              <span class="tile-code">03</span>
+              <span class="tile-icon">◈</span>
+              <div class="tile-title">SCORING</div>
+              <div class="tile-value">04</div>
+              <div class="tile-caption">PROCESSING</div>
+              <span class="corner"></span>
+            </article>
+
+            <article class="tile wide pale">
+              <div class="mini-chart">
+                <div class="chart-head"><span>DECISION FLOW</span><b>24H</b></div>
+                <div class="bars">
+                  <i style="height:34%"></i><i style="height:51%"></i><i style="height:42%"></i>
+                  <i style="height:67%"></i><i style="height:58%"></i><i style="height:82%"></i>
+                  <i style="height:74%"></i><i style="height:91%"></i>
+                </div>
+              </div>
+            </article>
+
+            <article class="tile orange large" data-view="contracts">
+              <span class="tile-code">04</span>
+              <div class="tile-title">APPROVED</div>
+              <div class="tile-value">18</div>
+              <div class="tile-caption">READY FOR CONTRACT</div>
+              <span class="tile-arrow">↗</span>
+              <span class="corner"></span>
+            </article>
+
+            <article class="tile pale">
+              <span class="tile-code">05</span>
+              <div class="tile-title">REJECTED</div>
+              <div class="tile-value">03</div>
+              <div class="tile-caption">TODAY</div>
+            </article>
+          </div>
+        </div>
+
+        <div class="view" id="applications">
+          <div class="section-head">
+            <div><div class="eyebrow">MODULE / 01</div><h2>APPLICATIONS</h2></div>
+            <button class="primary" id="newApplication">+ NEW APPLICATION</button>
+          </div>
+          <div class="filter-row">
+            <button class="filter active">ALL</button>
+            <button class="filter">CREATED</button>
+            <button class="filter">VERIFICATION</button>
+            <button class="filter">SCORING</button>
+            <button class="filter">APPROVED</button>
+            <button class="filter">REJECTED</button>
+          </div>
+          <div class="application-list" id="applicationList">
+            <div class="empty">LOADING APPLICATION DATA...</div>
+          </div>
+        </div>
+
+        <div class="view" id="scoring">
+          <div class="section-head">
+            <div><div class="eyebrow">MODULE / 03</div><h2>SCORING ENGINE</h2></div>
+            <div class="module-state"><span class="pulse"></span> ACTIVE</div>
+          </div>
+          <div class="score-panel">
+            <div class="score-ring"><strong>750</strong><span>DEMO SCORE</span></div>
+            <div class="score-info">
+              <h3>SCORING SERVICE</h3>
+              <p>Educational scoring model connected to the Application Service.</p>
+              <div class="metric"><span>AVG. PROCESSING</span><b>142 ms</b></div>
+              <div class="metric"><span>APPROVAL THRESHOLD</span><b>650</b></div>
+              <div class="metric"><span>MODEL STATUS</span><b>ONLINE</b></div>
+            </div>
+          </div>
+          <div class="notice">DEMO ENVIRONMENT — THE SCORE IS NOT A REAL BANKING CREDIT DECISION.</div>
+        </div>
+
+        <div class="view" id="verification">
+          <div class="section-head">
+            <div><div class="eyebrow">MODULE / 02</div><h2>VERIFICATION QUEUE</h2></div>
+          </div>
+          <div class="verification-card">
+            <span class="tile-icon">◇</span>
+            <div><b>PASSPORT DATA VALIDATION</b><small>Format / required fields / consistency checks</small></div>
+            <strong>06</strong>
+          </div>
+          <div class="verification-card">
+            <span class="tile-icon">◌</span>
+            <div><b>CLIENT DATA REVIEW</b><small>Manual exception queue</small></div>
+            <strong>02</strong>
+          </div>
+        </div>
+
+        <div class="view" id="contracts">
+          <div class="section-head">
+            <div><div class="eyebrow">MODULE / 04</div><h2>CONTRACTS</h2></div>
+          </div>
+          <div class="contract-board">
+            <div class="contract-stat"><span>APPROVED</span><b>18</b></div>
+            <div class="contract-stat"><span>READY</span><b>11</b></div>
+            <div class="contract-stat"><span>SIGNED</span><b>07</b></div>
+          </div>
+          <div class="empty contract-empty">CONTRACT GENERATION MODULE — MVP PLACEHOLDER</div>
+        </div>
+
+        <div class="view" id="settings">
+          <div class="section-head">
+            <div><div class="eyebrow">SYSTEM</div><h2>SETTINGS</h2></div>
+          </div>
+          <div class="settings-list">
+            <div><span>API ENDPOINT</span><b>/api/v1</b></div>
+            <div><span>DATABASE</span><b>CONNECTED</b></div>
+            <div><span>ENVIRONMENT</span><b>LOCAL / DEMO</b></div>
+            <div><span>VERSION</span><b>1.0.0</b></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="dock">
+      <div class="dock-left"><span class="camera">◉</span><b>LEX LUTHOR</b></div>
+      <button data-view="dashboard">⌂ <span>HOME</span></button>
+      <button data-view="applications">▦ <span>APPLICATIONS</span></button>
+      <button data-view="scoring">◈ <span>SCORING</span></button>
+      <button data-view="verification">◇ <span>VERIFY</span></button>
+      <button data-view="contracts">▤ <span>CONTRACTS</span></button>
+      <button id="lock">▣ <span>LOCK</span></button>
+      <div class="dock-right">● <span>API</span> <i></i></div>
+    </footer>
+  </div>
+
+  <div class="modal hidden" id="modal">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose">×</button>
+      <div class="eyebrow">NEW / APPLICATION</div>
+      <h2>CREATE LOAN REQUEST</h2>
+      <form id="applicationForm">
+        <input name="client_id" placeholder="CLIENT ID" value="CL-10001" required>
+        <input name="full_name" placeholder="FULL NAME" value="Иван Иванов" required>
+        <div class="two"><input name="passport_series" placeholder="PASSPORT SERIES" value="4510" required><input name="passport_number" placeholder="PASSPORT NUMBER" value="123456" required></div>
+        <div class="two"><input name="monthly_income" type="number" placeholder="MONTHLY INCOME" value="150000" required><input name="requested_amount" type="number" placeholder="REQUESTED AMOUNT" value="500000" required></div>
+        <input name="term_months" type="number" placeholder="TERM, MONTHS" value="24" required>
+        <button class="primary" type="submit">SUBMIT TO PROCESSING ↗</button>
+      </form>
+      <div id="formResult"></div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
